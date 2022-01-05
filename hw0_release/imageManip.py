@@ -45,7 +45,7 @@ def crop_image(image, start_row, start_col, num_rows, num_cols):
     out = None
 
     ### YOUR CODE HERE
-    pass
+    out = image[start_row:start_row + num_rows, start_col:start_col + num_cols, :]
     ### END YOUR CODE
 
     return out
@@ -68,7 +68,7 @@ def dim_image(image):
     out = None
 
     ### YOUR CODE HERE
-    pass
+    out = np.square(image) * .5
     ### END YOUR CODE
 
     return out
@@ -96,7 +96,11 @@ def resize_image(input_image, output_rows, output_cols):
     #    > This should require two nested for loops!
 
     ### YOUR CODE HERE
-    pass
+    num_rows, num_cols = int(input_rows / output_rows), int(input_cols / output_cols)
+    for i in range(0, output_rows, num_rows):
+        for j in range(0, output_cols, num_cols):
+            output_image[i, j, :] = np.mean(input_image[i:i+num_rows, j:j+num_cols, :], axis=(0,1))
+              
     ### END YOUR CODE
 
     # 3. Return the output image
